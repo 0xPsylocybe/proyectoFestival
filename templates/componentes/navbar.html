@@ -4,41 +4,40 @@
   <div class="container-fluid contenedor">
     <!-- Logo alineado a la izquierda que redirige al inicio -->
     <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
-      <img src="{% static 'icon.png' %}" alt="Festival Logo" width="35" height="35" class="d-inline-block align-text-top me-2">
+      <img src="{% static 'icon.png' %}" alt="Festival Logo" width="35" height="35"
+        class="d-inline-block align-text-top me-2">
       <span>Festival</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark"
+      aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse show" id="navbarDark">
       <ul class="navbar-nav me-auto mb-2 mb-xl-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
         </li>
+        {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="{% url 'artistas_lista' %}">Lista de artistas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'programacion' %}">Actuaciones</a>
         </li>
+        {% endif %}
       </ul>
-      
+
       <!-- Bloque de búsqueda y autenticación -->
       <div class="d-flex align-items-center gap-3 flex-wrap">
-        <form class="d-flex m-0">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-
         {% if user.is_authenticated %}
-          <form method="post" action="{% url 'logout' %}" class="m-0">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-logout">Cerrar sesión</button>
-          </form>
+        <form method="post" action="{% url 'logout' %}" class="m-0">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-logout">Cerrar sesión</button>
+        </form>
         {% else %}
-          <a href="{% url 'login' %}" class="btn btn-login">Iniciar sesión</a>
+        <a href="{% url 'login' %}" class="btn btn-login">Iniciar sesión</a>
         {% endif %}
       </div>
     </div>

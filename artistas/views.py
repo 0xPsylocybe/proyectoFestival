@@ -36,7 +36,7 @@ def genero_añadir(request: HttpRequest) -> HttpResponse:
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Género creado con éxito")
-            return redirect("artistas:genero_lista")
+            return redirect("artistas:generos_lista")
     else:
         # Petición GET: formulario en blanco
         formulario = GeneroForms()
@@ -120,7 +120,7 @@ def genero_eliminar(request: HttpRequest, pk: int) -> HttpResponse:
     if request.method == "POST":
         genero.delete()
         messages.error(request, "Género eliminado")
-        return redirect("artistas:genero_lista")
+        return redirect("artistas:generos_lista")
 
     return render(
         request,

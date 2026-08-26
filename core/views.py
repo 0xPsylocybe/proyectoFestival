@@ -20,3 +20,8 @@ def inicio(request: HttpRequest) -> HttpResponse:
     return render(request, "core/inicio.html")
 
 
+def nosotros(request: HttpRequest) -> HttpResponse:
+  
+    return render(request, "core/nosotros.html")
+
+
