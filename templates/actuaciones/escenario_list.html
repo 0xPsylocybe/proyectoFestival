@@ -6,8 +6,8 @@
 <section class="listado listado-escenarios">
   <div class="listado-cabecera">
     <h1>Escenarios</h1>
-    {# TODO: mostrar solo a la organización y enlazar la URL de alta #}
-    <a class="boton-nuevo" href="#">Nuevo escenario</a>
+    {# TODO: mostrar solo a la organización #}
+    <a class="boton-nuevo" href="{% url 'actuaciones:crear_escenario' %}">Nuevo escenario</a>
   </div>
 
   {% if escenarios %}

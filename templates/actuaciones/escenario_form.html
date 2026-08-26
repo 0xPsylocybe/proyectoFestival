@@ -26,8 +26,7 @@
 
     <div class="acciones">
       <button type="submit">Guardar</button>
-      {# TODO: enlazar al listado de escenarios cuando exista la URL #}
-      <a class="cancelar" href="#">Cancelar</a>
+      <a class="cancelar" href="{% url 'actuaciones:lista_escenarios' %}">Cancelar</a>
     </div>
   </form>
 </section>
