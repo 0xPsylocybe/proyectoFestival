@@ -1,0 +1,155 @@
+/* ============================================================
+   Festival — sistema base de estilos
+   Estilo "Riso índie" · paleta Bosque & Bermellón
+   Todo el look vive en variables: cambiar de estilo = cambiar tokens.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&display=swap");
+
+:root {
+  /* Colores (paleta B — Bosque & Bermellón) */
+  --paper: #f1ece0;      /* fondo */
+  --surface: #f7f3ea;    /* tarjetas / cabeceras */
+  --ink: #17211c;        /* texto principal */
+  --muted: #5f6b5c;      /* texto secundario */
+  --tinta-1: #16624a;    /* verde pino (primario) */
+  --tinta-2: #e8402a;    /* bermellón (acento) */
+  --linea: #c7bfa8;      /* bordes / separadores */
+
+  /* Tipografía */
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "Space Mono", ui-monospace, monospace;
+
+  /* Radios y sombra dura (look póster) */
+  --radio: 6px;
+  --sombra-dura: 3px 3px 0 var(--ink);
+
+  /* Espaciado */
+  --gap: 1rem;
+  --ancho-max: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.contenedor { max-width: var(--ancho-max); margin: 0 auto; padding: 1.5rem clamp(1rem, 4vw, 2rem); }
+
+/* Tipografía */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.05; margin: 0 0 .6em; }
+h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); text-transform: uppercase; letter-spacing: -.01em; }
+h2 { font-size: 1.4rem; }
+a { color: var(--tinta-1); }
+
+/* Botones */
+.boton-nuevo,
+button[type="submit"],
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--tinta-2);
+  border: 2px solid var(--ink);
+  box-shadow: var(--sombra-dura);
+  padding: .55rem 1.1rem;
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.boton-nuevo:hover,
+button[type="submit"]:hover,
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.boton-nuevo:active,
+button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+.cancelar { color: var(--muted); text-decoration: underline; font-size: .85rem; }
+
+/* Listados y cabeceras */
+.listado-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.listado-vacio { color: var(--muted); font-style: italic; padding: 2rem 0; }
+
+/* Tablas (programación y escenarios) */
+.tabla-programacion,
+.tabla-escenarios {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;          /* la tabla scrollea, no la página */
+}
+.tabla-programacion thead th,
+.tabla-escenarios thead th {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-align: left;
+  color: var(--tinta-1);
+  padding: .6rem .8rem;
+  border-bottom: 2px solid var(--ink);
+  white-space: nowrap;
+}
+.tabla-programacion td,
+.tabla-escenarios td {
+  padding: .7rem .8rem;
+  border-bottom: 1.5px dashed var(--linea);
+  font-size: .9rem;
+}
+.tabla-programacion tbody tr:hover,
+.tabla-escenarios tbody tr:hover { background: var(--surface); }
+
+.acciones { display: flex; gap: .8rem; white-space: nowrap; }
+.acciones .editar { color: var(--tinta-1); }
+.acciones .eliminar { color: var(--tinta-2); }
+
+/* Formularios */
+.formulario { max-width: 520px; }
+.campo { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1rem; }
+.campo label { font-family: var(--font-display); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+
+.form-control,
+.form-select,
+.campo input,
+.campo select,
+.campo textarea {
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: var(--radio);
+  padding: .5rem .6rem;
+  width: 100%;
+}
+.form-control:focus,
+.form-select:focus,
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus { outline: 3px solid var(--tinta-2); outline-offset: 1px; }
+
+.ayuda { color: var(--muted); font-size: .75rem; }
+.error { color: var(--tinta-2); font-size: .8rem; font-weight: 700; }
+.formulario-errores {
+  border: 2px solid var(--tinta-2);
+  background: color-mix(in srgb, var(--tinta-2) 10%, var(--paper));
+  padding: .7rem .9rem;
+  border-radius: var(--radio);
+  margin-bottom: 1rem;
+  font-size: .85rem;
+}
+
+/* Confirmación de borrado */
+.confirmar-borrado { max-width: 520px; }
+.confirmar-borrado .aviso { color: var(--tinta-2); font-weight: 700; }
+.confirmar-borrado .acciones { margin-top: 1.2rem; align-items: center; }
