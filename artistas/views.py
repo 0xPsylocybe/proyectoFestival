@@ -48,7 +48,7 @@ def genero_añadir(request: HttpRequest) -> HttpResponse:
     )
 
 
-@login_required
+
 def genero_lista(request: HttpRequest) -> HttpResponse:
     """
     Muestra la lista de todos los géneros musicales registrados.
@@ -162,7 +162,6 @@ def artista_añadir(request: HttpRequest) -> HttpResponse:
     )
 
 
-@login_required
 def artistas_lista(request: HttpRequest) -> HttpResponse:
     """
     Muestra el listado de todos los artistas participantes en el festival.
