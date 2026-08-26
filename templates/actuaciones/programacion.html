@@ -12,6 +12,40 @@
     {% endif %}
   </div>
 
+  <form class="filtros" method="get">
+    <div class="campo">
+      <label for="f-dia">Día</label>
+      <select id="f-dia" name="fecha">
+        <option value="">Todos</option>
+        {% for dia in dias %}
+          <option value="{{ dia|date:'Y-m-d' }}" {% if filtro.fecha == dia|date:'Y-m-d' %}selected{% endif %}>{{ dia|date:'l d M' }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="f-escenario">Escenario</label>
+      <select id="f-escenario" name="escenario">
+        <option value="">Todos</option>
+        {% for escenario in escenarios %}
+          <option value="{{ escenario.pk }}" {% if filtro.escenario == escenario.pk|stringformat:'s' %}selected{% endif %}>{{ escenario.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="f-artista">Artista</label>
+      <select id="f-artista" name="artista">
+        <option value="">Todos</option>
+        {% for artista in artistas %}
+          <option value="{{ artista.pk }}" {% if filtro.artista == artista.pk|stringformat:'s' %}selected{% endif %}>{{ artista.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="acciones">
+      <button type="submit">Filtrar</button>
+      <a class="cancelar" href="{% url 'actuaciones:programacion' %}">Quitar filtros</a>
+    </div>
+  </form>
+
   {% if actuaciones %}
     <table class="tabla-programacion">
       <thead>

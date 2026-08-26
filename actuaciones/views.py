@@ -10,6 +10,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from core.decorators import gestor_required
+from artistas.models import Artistas
 from .forms import ActuacionForm, EscenarioForm
 from .models import Actuacion, Escenario
 
@@ -104,20 +105,44 @@ def eliminar_escenario(request: HttpRequest, pk: int) -> HttpResponse:
 
 def programacion(request: HttpRequest) -> HttpResponse:
     """
-    Vista pública principal que muestra el cartel y la programación de actuaciones.
+    Vista pública de la programación, con filtros por día, escenario y artista.
 
-    Optimiza las consultas SQL utilizando select_related para traer los datos
-    de artista y escenario en una única consulta.
+    Los filtros llegan como parámetros GET (fecha, escenario, artista) y se
+    combinan entre sí. Usa select_related para cargar artista y escenario en una
+    sola consulta.
 
     Args:
         request (HttpRequest): Objeto de solicitud HTTP de Django.
 
     Returns:
-        HttpResponse: Renderizado de 'actuaciones/programacion.html' con las actuaciones.
+        HttpResponse: Renderizado de 'actuaciones/programacion.html' con las
+            actuaciones filtradas y las opciones de filtrado.
     """
-    # Traemos las actuaciones optimizando la carga de artista y escenario relacionados
     actuaciones = Actuacion.objects.select_related("artista", "escenario")
-    return render(request, "actuaciones/programacion.html", {"actuaciones": actuaciones})
+
+    fecha = request.GET.get("fecha")
+    escenario_id = request.GET.get("escenario")
+    artista_id = request.GET.get("artista")
+
+    if fecha:
+        actuaciones = actuaciones.filter(fecha=fecha)
+    if escenario_id:
+        actuaciones = actuaciones.filter(escenario_id=escenario_id)
+    if artista_id:
+        actuaciones = actuaciones.filter(artista_id=artista_id)
+
+    contexto = {
+        "actuaciones": actuaciones,
+        "dias": Actuacion.objects.dates("fecha", "day"),
+        "escenarios": Escenario.objects.all(),
+        "artistas": Artistas.objects.all(),
+        "filtro": {
+            "fecha": fecha or "",
+            "escenario": escenario_id or "",
+            "artista": artista_id or "",
+        },
+    }
+    return render(request, "actuaciones/programacion.html", contexto)
 
 
 @gestor_required

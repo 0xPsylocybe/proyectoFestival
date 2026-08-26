@@ -80,6 +80,11 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
 .listado-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
 .listado-vacio { color: var(--muted); font-style: italic; padding: 2rem 0; }
 
+/* Barra de filtros de la programación */
+.filtros { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 2px solid var(--ink); }
+.filtros .campo { margin-bottom: 0; min-width: 160px; }
+.filtros .acciones { align-items: center; }
+
 /* Tablas (programación y escenarios) */
 .tabla-programacion,
 .tabla-escenarios {

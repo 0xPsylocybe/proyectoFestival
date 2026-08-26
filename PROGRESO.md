@@ -71,28 +71,33 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
 
 ### Escenarios
 - [x] Modelo `Escenario` (nombre, ubicación en el recinto, capacidad)
-- [~] Plantilla `escenario_list.html` (falta view + URL)
-- [~] Plantilla de gestión `escenario_form.html` (falta view + form + URL)
-- [ ] Gestión de escenarios (alta/edición/baja) desde la aplicación
+- [x] Listado de escenarios (view + URL + plantilla)
+- [x] Gestión de escenarios (alta/edición/baja) protegida con `@gestor_required`
 
 ### Actuaciones
 - [x] Modelo `Actuacion` (artista, escenario, fecha, hora de comienzo, duración aproximada)
 - [x] **Regla:** impedir dos actuaciones que empiecen a la misma hora en el mismo escenario (constraint BD + `clean()`)
-- [~] Plantilla de gestión `actuacion_form.html` (falta view + form + URL)
-- [ ] Programación completa (vista cómoda con muchas actuaciones)
-- [ ] Consulta de actuaciones por día
-- [ ] Consulta de actuaciones por escenario
-- [ ] Consulta de actuaciones por artista
-- [ ] Gestión de actuaciones (añadir / modificar / eliminar) desde la aplicación
-- [ ] Registro en el admin de Django
+- [x] Programación completa (vista pública `programacion`)
+- [x] Consulta de actuaciones por día (filtro GET)
+- [x] Consulta de actuaciones por escenario (filtro GET)
+- [x] Consulta de actuaciones por artista (filtro GET)
+- [x] Gestión de actuaciones (añadir / modificar / eliminar) protegida con `@gestor_required`
+- [x] Registro en el admin de Django
+- [ ] Feedback con `messages` en las operaciones de gestión
 
 ---
 
 ## Transversal (a coordinar entre ambos)
 
-- [ ] Autenticación y permisos: visitante (solo consulta) vs. organización (gestión)
+- [~] Autenticación y permisos: visitante (solo consulta) vs. organización (gestión)
+  - [x] Login/logout cableados (`cuentas/login`, `cuentas/logout`) + `LOGIN_URL`/redirects
+  - [x] Plantilla `registration/login.html`
+  - [x] Decorador `gestor_required` + filtro `is_gestor` aplicados en la app de David
+  - [ ] Crear superusuario (`createsuperuser`) y grupo "Gestores" en el admin
+  - [ ] Enlaces login/logout en la navbar (logout por POST) — Luizay
 - [ ] Mensajes de resultado en las operaciones de gestión
-- [ ] Plantillas base y estilos comunes
+- [~] Sistema de estilos: `static/css/base.css` (paleta Bosque & Bermellón) — falta enlazarlo desde `base.html`
+- [ ] `base.html` con bloques `titulo`/`contenido`, navbar y footer — Luizay
 - [ ] Datos de prueba / fixtures
 
 ---
