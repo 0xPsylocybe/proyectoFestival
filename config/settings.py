@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'artistas',
     'actuaciones',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
