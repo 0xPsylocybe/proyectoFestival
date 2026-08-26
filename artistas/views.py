@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Generos,Artistas,Origen
+from .forms import 
 
-# Create your views here.
+@login_required
+def genero_añadir(request):
+    i
