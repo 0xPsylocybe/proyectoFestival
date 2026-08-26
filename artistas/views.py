@@ -242,7 +242,7 @@ def artista_eliminar(request: HttpRequest, pk: int) -> HttpResponse:
     )
 
 
-@login_required
+
 def detalle_artista(request: HttpRequest, pk: int) -> HttpResponse:
     """
     Muestra la ficha detallada de un artista específico y sus actuaciones programadas.

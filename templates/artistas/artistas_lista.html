@@ -1,10 +1,51 @@
-
 {% extends "base.html" %}
-{% load static %}
+{% load auth_extras %}
 
-{% block title %}
-FESTIVAL
-{% endblock %}
+{% block title %}Lista de artistas{% endblock %}
 
 {% block contenido %}
+<section class="listado artistas">
+  <div class="listado-cabecera">
+    <h1>Artistas</h1>
+    {% if user|is_gestor %}
+      <a class="boton-nuevo" href="{% url 'artistas:artista_añadir' %}">Nuevo artista</a>
+    {% endif %}
+  </div>
+
+  {% if artistas %}
+    <table class="tabla-programacion">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Géneros</th>
+          {% if user|is_gestor %}<th class="col-acciones">Acciones</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for artista in artistas %}
+          <tr>
+            <td>
+              <a href="{% url 'artistas:detalle_artista' artista.pk %}">{{ artista.nombre }}</a>
+            </td>
+            <td>
+              {% for genero in artista.generos.all %}
+                {{ genero.nombre }}{% if not forloop.last %}, {% endif %}
+              {% empty %}
+                <span class="ayuda">Sin género</span>
+              {% endfor %}
+            </td>
+            {% if user|is_gestor %}
+              <td class="acciones">
+                <a class="editar" href="{% url 'artistas:artista_editar' artista.pk %}">Editar</a>
+                <a class="eliminar" href="{% url 'artistas:artista_eliminar' artista.pk %}">Eliminar</a>
+              </td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="listado-vacio">Todavía no hay artistas registrados.</p>
+  {% endif %}
+</section>
 {% endblock %}
