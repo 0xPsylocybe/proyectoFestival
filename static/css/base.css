@@ -182,7 +182,7 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
       color-mix(in srgb, var(--paper) 80%, transparent), 
       color-mix(in srgb, var(--paper) 85%, transparent)
     ), 
-    url("../img/footer.png") no-repeat center center; /* Ruta corregida saliendo de 'css/' y entrando a 'img/' */
+    url("../img/footer.png") no-repeat center center; /* ruta relativa a este CSS (static/css/) */
   background-size: cover;
   border-top: 3px solid var(--ink);
   margin-top: auto;
