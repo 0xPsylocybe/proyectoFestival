@@ -154,6 +154,21 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
   font-size: .85rem;
 }
 
+/* Mensajes de resultado (framework messages) */
+.mensajes { list-style: none; margin: 0 0 1.4rem; padding: 0; display: flex; flex-direction: column; gap: .6rem; }
+.mensaje {
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-left-width: 6px;
+  border-radius: var(--radio);
+  padding: .6rem .9rem;
+  font-size: .85rem;
+}
+.mensaje.success { border-left-color: var(--tinta-1); }
+.mensaje.error { border-left-color: var(--tinta-2); }
+.mensaje.warning { border-left-color: #e0a400; }
+.mensaje.info { border-left-color: var(--muted); }
+
 /* Confirmación de borrado */
 .confirmar-borrado { max-width: 520px; }
 .confirmar-borrado .aviso { color: var(--tinta-2); font-weight: 700; }
