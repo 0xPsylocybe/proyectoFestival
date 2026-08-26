@@ -18,3 +18,5 @@ def inicio(request: HttpRequest) -> HttpResponse:
         HttpResponse: Renderizado de la plantilla 'core/inicio.html'.
     """
     return render(request, "core/inicio.html")
+
+
