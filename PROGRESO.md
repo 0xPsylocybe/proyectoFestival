@@ -83,7 +83,7 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
 - [x] Consulta de actuaciones por artista (filtro GET)
 - [x] Gestión de actuaciones (añadir / modificar / eliminar) protegida con `@gestor_required`
 - [x] Registro en el admin de Django
-- [ ] Feedback con `messages` en las operaciones de gestión
+- [x] Feedback con `messages` en las operaciones de gestión
 
 ---
 
@@ -95,7 +95,7 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
   - [x] Decorador `gestor_required` + filtro `is_gestor` aplicados en la app de David
   - [ ] Crear superusuario (`createsuperuser`) y grupo "Gestores" en el admin
   - [ ] Enlaces login/logout en la navbar (logout por POST) — Luizay
-- [ ] Mensajes de resultado en las operaciones de gestión
+- [~] Mensajes de resultado en las operaciones de gestión (añadidos en las vistas; falta que `base.html` los renderice con `{% if messages %}`)
 - [~] Sistema de estilos: `static/css/base.css` (paleta Bosque & Bermellón) — falta enlazarlo desde `base.html`
 - [ ] `base.html` con bloques `titulo`/`contenido`, navbar y footer — Luizay
 - [ ] Datos de prueba / fixtures

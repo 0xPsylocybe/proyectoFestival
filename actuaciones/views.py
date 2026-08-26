@@ -6,6 +6,7 @@ así como la visualización pública de la programación del festival.
 Controla los permisos mediante el decorador @gestor_required.
 """
 
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -45,12 +46,13 @@ def crear_escenario(request: HttpRequest) -> HttpResponse:
     """
     # Instanciamos el formulario con datos POST si existen, o vacío si es GET
     form = EscenarioForm(request.POST or None)
-    
+
     # Si la petición es POST y los datos son válidos, guardamos en la base de datos
     if request.method == "POST" and form.is_valid():
         form.save()
+        messages.success(request, "Escenario creado con éxito.")
         return redirect("actuaciones:lista_escenarios")
-        
+
     return render(request, "actuaciones/escenario_form.html", {"form": form})
 
 
@@ -72,11 +74,12 @@ def editar_escenario(request: HttpRequest, pk: int) -> HttpResponse:
     
     # Vinculamos el formulario a la instancia existente
     form = EscenarioForm(request.POST or None, instance=escenario)
-    
+
     if request.method == "POST" and form.is_valid():
         form.save()
+        messages.success(request, "Escenario actualizado con éxito.")
         return redirect("actuaciones:lista_escenarios")
-        
+
     return render(request, "actuaciones/escenario_form.html", {"form": form})
 
 
@@ -98,8 +101,9 @@ def eliminar_escenario(request: HttpRequest, pk: int) -> HttpResponse:
     # Solo procedemos a borrar si el usuario confirma mediante POST
     if request.method == "POST":
         escenario.delete()
+        messages.success(request, "Escenario eliminado.")
         return redirect("actuaciones:lista_escenarios")
-        
+
     return render(request, "actuaciones/escenario_confirm_delete.html", {"escenario": escenario})
 
 
@@ -158,11 +162,12 @@ def crear_actuacion(request: HttpRequest) -> HttpResponse:
             o renderizado de 'actuaciones/actuacion_form.html' con el formulario y posibles errores.
     """
     form = ActuacionForm(request.POST or None)
-    
+
     if request.method == "POST" and form.is_valid():
         form.save()
+        messages.success(request, "Actuación programada con éxito.")
         return redirect("actuaciones:programacion")
-        
+
     return render(request, "actuaciones/actuacion_form.html", {"form": form})
 
 
@@ -184,8 +189,9 @@ def editar_actuacion(request: HttpRequest, pk: int) -> HttpResponse:
     
     if request.method == "POST" and form.is_valid():
         form.save()
+        messages.success(request, "Actuación actualizada con éxito.")
         return redirect("actuaciones:programacion")
-        
+
     return render(request, "actuaciones/actuacion_form.html", {"form": form})
 
 
@@ -206,6 +212,7 @@ def eliminar_actuacion(request: HttpRequest, pk: int) -> HttpResponse:
     
     if request.method == "POST":
         actuacion.delete()
+        messages.success(request, "Actuación eliminada.")
         return redirect("actuaciones:programacion")
-        
+
     return render(request, "actuaciones/actuacion_confirm_delete.html", {"actuacion": actuacion})
