@@ -18,3 +18,10 @@ class ArtistasForms(forms.ModelForm):
         'origen': forms.Select(attrs={'class': 'form-select'}),
         'genero': forms.Select(attrs={'class': 'form-select'}),
     }
+
+class GeneroForms(forms.ModelForm):
+     class Meta:
+            model=Generos
+            fields=[
+                "nombre",
+                ]
