@@ -8,10 +8,16 @@ Define el enrutamiento global conectando las aplicaciones 'core',
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Autenticación (login / logout)
+    path('cuentas/login/', auth_views.LoginView.as_view(), name='login'),
+    path('cuentas/logout/', auth_views.LogoutView.as_view(), name='logout'),
+
     path('artistas/', include("artistas.urls")),
     path('', include("core.urls")),
     path('', include("actuaciones.urls")),
