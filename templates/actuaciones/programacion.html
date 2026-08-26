@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load auth_extras %}
+
+{% block titulo %}Programación{% endblock %}
+
+{% block contenido %}
+<section class="listado programacion">
+  <div class="listado-cabecera">
+    <h1>Programación</h1>
+    {% if user|is_gestor %}
+      <a class="boton-nuevo" href="{% url 'actuaciones:crear_actuacion' %}">Nueva actuación</a>
+    {% endif %}
+  </div>
+
+  {% if actuaciones %}
+    <table class="tabla-programacion">
+      <thead>
+        <tr>
+          <th>Artista</th>
+          <th>Escenario</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Duración</th>
+          {% if user|is_gestor %}<th class="col-acciones">Acciones</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for actuacion in actuaciones %}
+          <tr>
+            <td>{{ actuacion.artista }}</td>
+            <td>{{ actuacion.escenario.nombre }}</td>
+            <td>{{ actuacion.fecha }}</td>
+            <td>{{ actuacion.hora_inicio }}</td>
+            <td>{{ actuacion.duracion_minutos }} min</td>
+            {% if user|is_gestor %}
+              <td class="acciones">
+                <a class="editar" href="{% url 'actuaciones:editar_actuacion' actuacion.pk %}">Editar</a>
+                <a class="eliminar" href="{% url 'actuaciones:eliminar_actuacion' actuacion.pk %}">Eliminar</a>
+              </td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="listado-vacio">Todavía no hay actuaciones programadas.</p>
+  {% endif %}
+</section>
+{% endblock %}
