@@ -13,7 +13,27 @@ Leyenda: ✅ hecho · 🔄 en curso · ⬜ pendiente
 | Configuración | Común       | ✅     |
 | `core`        | Luizay      | ⬜     |
 | `artistas`    | Luizay      | ⬜     |
-| `actuaciones` | David       | ⬜     |
+| `actuaciones` | David       | 🔄     |
+
+---
+
+## Modelo de datos acordado
+
+Cuatro modelos de dominio (2 de Luizay, 2 de David). La información del festival
+es **estática** en `core` (un único festival, sin modelo). La autenticación usa el
+`auth` de Django + grupo "Organización" (sin modelo nuevo). El M:N Artista–Género
+lo gestiona Django con su tabla puente automática (no se modela a mano).
+
+| App | Modelo | Campos | Reglas |
+| --- | ------ | ------ | ------ |
+| `artistas` | `Genero` | nombre (único) | — |
+| `artistas` | `Artista` | nombre (indexado), imagen, descripción, procedencia · M:N → Genero | Reglas 5 y 6 |
+| `actuaciones` | `Escenario` | nombre (único), ubicación, capacidad | — |
+| `actuaciones` | `Actuacion` | artista (FK), escenario (FK), fecha (indexada), hora_inicio, duracion_minutos | Reglas 1–4 y **7**: `unique(escenario, fecha, hora_inicio)` |
+
+```
+Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
+```
 
 ---
 
@@ -30,7 +50,7 @@ Leyenda: ✅ hecho · 🔄 en curso · ⬜ pendiente
 ## Luizay — `core` y `artistas`
 
 ### `core` (información del festival)
-- [ ] Modelo `Festival` (nombre, fechas, ubicación, descripción, info para asistentes)
+- [ ] Información del festival como contenido estático (nombre, fechas, ubicación, descripción, info para asistentes) — sin modelo
 - [ ] Página de inicio con la presentación del festival
 - [ ] Sección de información general
 - [ ] Navegación hacia programación y resto de secciones
@@ -49,12 +69,15 @@ Leyenda: ✅ hecho · 🔄 en curso · ⬜ pendiente
 ## David — `actuaciones` (escenarios + actuaciones)
 
 ### Escenarios
-- [ ] Modelo `Escenario` (nombre, ubicación en el recinto, capacidad)
+- [x] Modelo `Escenario` (nombre, ubicación en el recinto, capacidad)
+- [~] Plantilla `escenario_list.html` (falta view + URL)
+- [~] Plantilla de gestión `escenario_form.html` (falta view + form + URL)
 - [ ] Gestión de escenarios (alta/edición/baja) desde la aplicación
 
 ### Actuaciones
-- [ ] Modelo `Actuacion` (artista, escenario, fecha, hora de comienzo, duración aproximada)
-- [ ] **Regla:** impedir dos actuaciones que empiecen a la misma hora en el mismo escenario
+- [x] Modelo `Actuacion` (artista, escenario, fecha, hora de comienzo, duración aproximada)
+- [x] **Regla:** impedir dos actuaciones que empiecen a la misma hora en el mismo escenario (constraint BD + `clean()`)
+- [~] Plantilla de gestión `actuacion_form.html` (falta view + form + URL)
 - [ ] Programación completa (vista cómoda con muchas actuaciones)
 - [ ] Consulta de actuaciones por día
 - [ ] Consulta de actuaciones por escenario
@@ -75,6 +98,7 @@ Leyenda: ✅ hecho · 🔄 en curso · ⬜ pendiente
 
 ## Próximos pasos inmediatos
 
-1. Definir y acordar el **modelo de datos** entre los tres módulos (relaciones Artista–Género y Actuación–Artista/Escenario).
-2. Cada responsable crea los modelos de su módulo y genera migraciones.
-3. Registrar los modelos en el admin para poder cargar datos de prueba.
+1. **Bloqueo:** `Actuacion.artista` referencia `artistas.Artista`, que aún no existe. Hasta que Luizay defina `Artista` y `Genero`, no se puede pasar `check`/`makemigrations`.
+2. Luizay crea los modelos `Genero` y `Artista` en su app.
+3. Generar migraciones de todos los modelos y aplicarlas a Supabase.
+4. Registrar los modelos en el admin para poder cargar datos de prueba.

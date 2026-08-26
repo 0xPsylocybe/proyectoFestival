@@ -28,7 +28,9 @@ proyectoFestival/
 ├── config/            # Proyecto Django (settings, urls, entorno.py)
 │   ├── entorno.py     # Carga el .env (mantiene los secretos fuera de settings.py)
 │   └── settings.py
-├── core/              # Página inicial e información general del festival
+├── templates/         # Plantillas (subcarpeta por app)
+├── static/css/        # Estilos
+├── core/              # Página inicial e información (estática) del festival
 ├── artistas/          # Artistas y géneros (modelo, listado, ficha, búsqueda/filtrado)
 ├── actuaciones/       # Escenarios y actuaciones (programación, consultas, reglas)
 ├── .env               # Variables de entorno (NO se versiona)
@@ -36,6 +38,27 @@ proyectoFestival/
 ├── requirements.txt
 └── manage.py
 ```
+
+## Modelo de datos
+
+Cuatro modelos de dominio. La información del festival es **estática** en `core`
+(la app se dedica a un único festival, no lleva modelo). El M:N Artista–Género lo
+gestiona Django con su tabla puente automática. La autenticación reutiliza el `auth`
+de Django + grupo "Organización" (sin modelos propios).
+
+```
+Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
+```
+
+| App | Modelo | Campos |
+| --- | ------ | ------ |
+| `artistas` | `Genero` | nombre |
+| `artistas` | `Artista` | nombre, imagen, descripción, procedencia · M:N → Genero |
+| `actuaciones` | `Escenario` | nombre, ubicación, capacidad |
+| `actuaciones` | `Actuacion` | artista, escenario, fecha, hora_inicio, duracion_minutos |
+
+Regla clave: un escenario no puede tener dos actuaciones que empiecen a la misma hora
+(`unique(escenario, fecha, hora_inicio)` + validación en la aplicación).
 
 ## Equipo y reparto de trabajo
 
