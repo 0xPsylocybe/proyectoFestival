@@ -49,9 +49,6 @@ def genero_añadir(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-<<<<<<< HEAD
-def generos_lista(request):
-=======
 def genero_lista(request: HttpRequest) -> HttpResponse:
     """
     Muestra la lista de todos los géneros musicales registrados.
@@ -63,7 +60,6 @@ def genero_lista(request: HttpRequest) -> HttpResponse:
         HttpResponse: Renderizado de la plantilla 'artistas/generos_lista.html'
             con el catálogo de géneros.
     """
->>>>>>> 8610b61c5daf21b48ecb3a014e26c22a73f2457b
     generos = Generos.objects.all()
     contexto = {"generos": generos}
 
