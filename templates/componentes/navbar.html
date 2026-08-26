@@ -25,14 +25,12 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'actuaciones:lista_escenarios' %}">Escenarios</a>
         </li>
-        {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'artistas:artistas_lista' %}">Artistas</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'artistas:genero_lista' %}">Géneros</a>
         </li>
-        {% endif %}
       </ul>
 
       <!-- Bloque de búsqueda y autenticación -->
