@@ -60,7 +60,7 @@ def genero_editar(request, pk):
 
     return render(
         request,
-        "artista/nuevo_genero.html",
+        "artista/genero_añadir.html",
         {
             "formulario": formulario
         }
@@ -132,7 +132,7 @@ def artista_editar(request,pk):
 
             formulario.save()
             messages.success(request, "Artista editado con éxito")
-            return redirect("generos_lista")
+            return redirect("artistas/artistas_lista")
 
     else:
 
