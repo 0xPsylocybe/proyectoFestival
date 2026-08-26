@@ -24,7 +24,7 @@ def genero_añadir(request):
         )
 
 @login_required
-def genero_lista(request):
+def generos_lista(request):
     generos = Generos.objects.all()
     contexto = {
         "generos": generos
