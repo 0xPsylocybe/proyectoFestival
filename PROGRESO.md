@@ -43,6 +43,7 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
 - [x] Variables de entorno desacopladas (`config/entorno.py` + `.env`)
 - [x] Base de datos PostgreSQL (Supabase) conectada
 - [x] Migraciones iniciales de Django aplicadas
+- [x] Modelos de las 3 apps migrados a Supabase (Generos, Artistas, Escenario, Actuacion)
 - [x] Repositorio en GitHub y README
 
 ---
