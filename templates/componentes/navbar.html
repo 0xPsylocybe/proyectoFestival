@@ -1,7 +1,22 @@
-{% if user.is_authenticated %}
-  <form method="post" action="{% url 'logout' %}">{% csrf_token %}
-    <button type="submit">Cerrar sesión</button>
-  </form>
-{% else %}
-  <a href="{% url 'login' %}">Iniciar sesión</a>
-{% endif %}
+<nav class="navbar">
+  <a class="navbar-marca" href="{% url 'inicio' %}">Festival</a>
+
+  <ul class="navbar-links">
+    <li><a href="{% url 'inicio' %}">Inicio</a></li>
+    <li><a href="{% url 'actuaciones:programacion' %}">Programación</a></li>
+    <li><a href="{% url 'actuaciones:lista_escenarios' %}">Escenarios</a></li>
+    <li><a href="{% url 'artistas:artistas_lista' %}">Artistas</a></li>
+    <li><a href="{% url 'artistas:genero_lista' %}">Géneros</a></li>
+  </ul>
+
+  <div class="navbar-auth">
+    {% if user.is_authenticated %}
+      <span class="navbar-user">{{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+        <button type="submit">Cerrar sesión</button>
+      </form>
+    {% else %}
+      <a class="btn" href="{% url 'login' %}">Iniciar sesión</a>
+    {% endif %}
+  </div>
+</nav>
