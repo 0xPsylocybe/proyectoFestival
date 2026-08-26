@@ -70,11 +70,13 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
 
 ### Escenarios
 - [x] Modelo `Escenario` (nombre, ubicación en el recinto, capacidad)
+- [~] Plantilla de gestión `escenario_form.html` (falta view + form + URL)
 - [ ] Gestión de escenarios (alta/edición/baja) desde la aplicación
 
 ### Actuaciones
 - [x] Modelo `Actuacion` (artista, escenario, fecha, hora de comienzo, duración aproximada)
 - [x] **Regla:** impedir dos actuaciones que empiecen a la misma hora en el mismo escenario (constraint BD + `clean()`)
+- [~] Plantilla de gestión `actuacion_form.html` (falta view + form + URL)
 - [ ] Programación completa (vista cómoda con muchas actuaciones)
 - [ ] Consulta de actuaciones por día
 - [ ] Consulta de actuaciones por escenario
