@@ -76,27 +76,6 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
 
 .cancelar { color: var(--muted); text-decoration: underline; font-size: .85rem; }
 
-/* Navbar */
-.navbar {
-  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-  padding: .8rem clamp(1rem, 4vw, 2rem);
-  background: var(--tinta-1);
-  border-bottom: 3px solid var(--ink);
-}
-.navbar-marca {
-  font-family: var(--font-display); font-weight: 800; font-size: 1.3rem;
-  text-transform: uppercase; letter-spacing: -.01em;
-  color: var(--paper); text-decoration: none;
-}
-.navbar-links { display: flex; gap: 1.2rem; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
-.navbar-links a {
-  color: var(--paper); text-decoration: none;
-  font-family: var(--font-display); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em;
-}
-.navbar-links a:hover { color: var(--tinta-2); }
-.navbar-auth { margin-left: auto; display: flex; align-items: center; gap: .8rem; }
-.navbar-user { color: var(--paper); font-size: .75rem; opacity: .85; }
-
 /* Listados y cabeceras */
 .listado-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
 .listado-vacio { color: var(--muted); font-style: italic; padding: 2rem 0; }
