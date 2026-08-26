@@ -7,10 +7,6 @@ Gestiona la página de inicio del festival y la información general para asiste
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-<<<<<<< HEAD
-def inicio(request):
-=======
-
 def inicio(request: HttpRequest) -> HttpResponse:
     """
     Renderiza la página de inicio principal del festival.
@@ -21,5 +17,4 @@ def inicio(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: Renderizado de la plantilla 'core/inicio.html'.
     """
->>>>>>> 8610b61c5daf21b48ecb3a014e26c22a73f2457b
     return render(request, "core/inicio.html")
