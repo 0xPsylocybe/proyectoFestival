@@ -40,6 +40,13 @@
 
     <!-- Contenido principal -->
     <main class="flex-grow-1">
+        {% if messages %}
+        <ul class="mensajes contenedor">
+            {% for m in messages %}
+            <li class="mensaje {{ m.tags }}">{{ m }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% block contenido %}
         {% endblock %}
     </main>

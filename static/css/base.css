@@ -183,7 +183,7 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
       color-mix(in srgb, var(--paper) 88%, transparent), 
       color-mix(in srgb, var(--paper) 92%, transparent)
     ), 
-    url("static/img/footer.png") no-repeat center center; /* Ajusta la ruta si tu imagen está en otra carpeta */
+    url("../img/footer.png") no-repeat center center; /* ruta relativa a este CSS (static/css/) */
   background-size: cover;
   border-top: 3px solid var(--ink);
   margin-top: auto; /* Empuja el footer al fondo si se usa con flexbox en el body */
