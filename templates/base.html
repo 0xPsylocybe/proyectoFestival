@@ -20,20 +20,7 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Preloader con el logo principal y la carga debajo -->
-    <div id="preloader" class="preloader position-fixed top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center bg-white">
-        <div class="text-center">
-            <!-- Logo principal -->
-            <img src="{% static 'icon.png' %}" alt="festival" class="logo-preloader pulse-logo">
-            
-            <!-- Indicador de carga ubicado exactamente debajo -->
-            <div class="mt-4">
-                <div class="spinner spinner-border spinner-border-sm" role="status">
-                    <span class="visually-hidden">Cargando...</span>
-                </div>
-            </div>
-        </div>
-    </div>
+  
 
     {% include "componentes/navbar.html" %}
 

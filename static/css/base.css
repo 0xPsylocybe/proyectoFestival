@@ -178,15 +178,14 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
    Estilos del Footer con imagen de fondo
    ============================================================ */
 .site-footer {
-  /* Imagen de fondo combinada con un tinte semitransparente del color --paper para legibilidad */
   background: linear-gradient(
-      color-mix(in srgb, var(--paper) 88%, transparent), 
-      color-mix(in srgb, var(--paper) 92%, transparent)
+      color-mix(in srgb, var(--paper) 80%, transparent), 
+      color-mix(in srgb, var(--paper) 85%, transparent)
     ), 
-    url("static/img/footer.png") no-repeat center center; /* Ajusta la ruta si tu imagen está en otra carpeta */
+    url("../img/footer.png") no-repeat center center; /* Ruta corregida saliendo de 'css/' y entrando a 'img/' */
   background-size: cover;
   border-top: 3px solid var(--ink);
-  margin-top: auto; /* Empuja el footer al fondo si se usa con flexbox en el body */
+  margin-top: auto;
   padding-top: 3rem;
 }
 
@@ -236,4 +235,65 @@ button[type="submit"]:active { transform: translate(2px, 2px); box-shadow: 1px 1
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: .02em;
+}
+
+/* Estilos adaptados para la barra de navegación del Festival */
+.festival-navbar {
+  background-color: var(--surface) !important;
+  border-bottom: 3px solid var(--ink);
+  padding: 0.8rem 0;
+}
+
+.festival-navbar .navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--tinta-1) !important;
+  letter-spacing: -.01em;
+}
+
+.festival-navbar .nav-link {
+  font-family: var(--font-body);
+  color: var(--ink) !important;
+  font-size: 0.9rem;
+}
+
+.festival-navbar .nav-link.active {
+  color: var(--tinta-2) !important;
+  font-weight: bold;
+}
+
+/* Botón personalizado de sesión integrado con el look póster */
+.festival-navbar .btn-logout,
+.festival-navbar .btn-login {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--tinta-1);
+  border: 2px solid var(--ink);
+  box-shadow: var(--sombra-dura);
+  padding: .5rem 1rem;
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.festival-navbar .btn-logout:hover,
+.festival-navbar .btn-login:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ink);
+  color: var(--paper);
+}
+
+.festival-navbar .btn-logout:active,
+.festival-navbar .btn-login:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
 }
