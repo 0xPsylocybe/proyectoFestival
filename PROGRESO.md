@@ -93,18 +93,41 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
   - [x] Login/logout cableados (`cuentas/login`, `cuentas/logout`) + `LOGIN_URL`/redirects
   - [x] Plantilla `registration/login.html`
   - [x] Decorador `gestor_required` + filtro `is_gestor` aplicados en la app de David
-  - [ ] Crear superusuario (`createsuperuser`) y grupo "Gestores" en el admin
-  - [ ] Enlaces login/logout en la navbar (logout por POST) — Luizay
-- [~] Mensajes de resultado en las operaciones de gestión (añadidos en las vistas; falta que `base.html` los renderice con `{% if messages %}`)
-- [~] Sistema de estilos: `static/css/base.css` (paleta Bosque & Bermellón) — falta enlazarlo desde `base.html`
-- [ ] `base.html` con bloques `titulo`/`contenido`, navbar y footer — Luizay
-- [ ] Datos de prueba / fixtures
+  - [x] Superusuario creado
+  - [ ] Grupo "Gestores" en el admin (para gestores que no sean superusuario)
+  - [x] Enlaces login/logout en la navbar (logout por POST) — Luizay
+- [x] Mensajes de resultado en las operaciones de gestión (vistas + render en `base.html`)
+- [x] Sistema de estilos: `static/css/base.css` (paleta Bosque & Bermellón), enlazado desde `base.html`
+- [x] `base.html` con bloques `title`/`contenido`, navbar y footer — Luizay
+- [x] Datos de prueba (script idempotente cargado en Supabase)
+  - [ ] Convertir el script en fixture/comando versionado
 
 ---
 
-## Próximos pasos inmediatos
+## Verificación (app de David)
 
-1. **Bloqueo:** `Actuacion.artista` referencia `artistas.Artista`, que aún no existe. Hasta que Luizay defina `Artista` y `Genero`, no se puede pasar `check`/`makemigrations`.
-2. Luizay crea los modelos `Genero` y `Artista` en su app.
-3. Generar migraciones de todos los modelos y aplicarlas a Supabase.
-4. Registrar los modelos en el admin para poder cargar datos de prueba.
+### Automática — hecha ✅
+- [x] Regla 7: bloquea solapamiento con mensaje claro; deja pasar las que no solapan
+- [x] Programación: renderiza las 6 actuaciones, ordenadas, con país y fecha en español
+- [x] Filtro por día
+- [x] Filtro combinado (día + escenario) → AND correcto
+- [x] Listado de escenarios con recuento de actuaciones correcto
+- [x] Protección: anónimo no accede a gestión (302); login responde 200
+
+### Manual — pendiente (flujo autenticado, probar como gestor)
+- [ ] Con sesión iniciada, en Programación y Escenarios aparecen "Nuevo…" y Editar/Eliminar
+- [ ] Crear escenario → vuelve al listado y sale mensaje verde de éxito
+- [ ] Crear actuación en Escenario Principal el 2026-07-17 a las 22:30 → rechazada con el error de la Regla 7 en el formulario
+- [ ] Editar y eliminar una actuación → mensajes correspondientes
+
+---
+
+## Próximos pasos (opcionales, app de David)
+
+1. Ficha de escenario (detalle con sus actuaciones).
+2. Convertir los datos de prueba en fixture/comando versionado.
+3. Pulido visual de programación y formularios.
+
+### Notas / a coordinar con Luizay
+- `gestor_required` redirige a `inicio` en vez de a `login` (un anónimo va a la home, no al login). Cambiar `login_url="login"` si se quiere.
+- Decidido: sistema de estilos propio (no Bootstrap). Bootstrap CSS sigue enlazado en `base.html`; retirarlo requiere sustituir las clases de layout y revisar las plantillas de core.
