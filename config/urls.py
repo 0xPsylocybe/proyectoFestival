@@ -12,9 +12,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('artistas/',include("artistas.urls")),
-    path('',include("core.urls")),
-    path('actuaciones/',include("actuaciones.uls"),)
+    path('artistas/', include("artistas.urls")),
+    path('', include("core.urls")),
+    path('', include("actuaciones.urls")),
 ]
 
 # Servir archivos estáticos y subidas de medios durante el desarrollo local
