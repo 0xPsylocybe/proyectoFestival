@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block titulo %}Escenarios{% endblock %}
+
+{% block contenido %}
+<section class="listado listado-escenarios">
+  <div class="listado-cabecera">
+    <h1>Escenarios</h1>
+    {# TODO: mostrar solo a la organización y enlazar la URL de alta #}
+    <a class="boton-nuevo" href="#">Nuevo escenario</a>
+  </div>
+
+  {% if escenarios %}
+    <table class="tabla-escenarios">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Ubicación</th>
+          <th>Capacidad</th>
+          <th>Actuaciones</th>
+          <th class="col-acciones">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for escenario in escenarios %}
+          <tr>
+            <td>{{ escenario.nombre }}</td>
+            <td>{{ escenario.ubicacion|default:"—" }}</td>
+            <td>{{ escenario.capacidad }}</td>
+            <td>{{ escenario.actuaciones.count }}</td>
+            <td class="acciones">
+              {# TODO: enlazar URLs y limitar la edición/borrado a la organización #}
+              <a class="editar" href="#">Editar</a>
+              <a class="eliminar" href="#">Eliminar</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="listado-vacio">Todavía no hay escenarios registrados.</p>
+  {% endif %}
+</section>
+{% endblock %}

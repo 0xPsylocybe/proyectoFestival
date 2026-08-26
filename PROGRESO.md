@@ -70,6 +70,7 @@ Genero  N ──M  Artista  1 ──N  Actuacion  N── 1  Escenario
 
 ### Escenarios
 - [x] Modelo `Escenario` (nombre, ubicación en el recinto, capacidad)
+- [~] Plantilla `escenario_list.html` (falta view + URL)
 - [~] Plantilla de gestión `escenario_form.html` (falta view + form + URL)
 - [ ] Gestión de escenarios (alta/edición/baja) desde la aplicación
 
