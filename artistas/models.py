@@ -17,7 +17,7 @@ class Artistas(models.Model):
     nombre = models.CharField("nombre",max_length=100)
     imagen = models.ImageField("imagen",upload_to='artistas/pfp')
     descripcion = models.CharField("descripcion", max_length=150)
-    genero = models.ForeignKey(Generos, on_delete=models.CASCADE,related_name="genero")
+    generos = models.ManyToManyField(Generos, related_name="artistas")
     origen = CountryField(blank_label='(Selecciona un país)')
     class Meta:
         verbose_name="Artista"
