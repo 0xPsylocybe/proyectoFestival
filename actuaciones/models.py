@@ -131,7 +131,7 @@ class Actuacion(models.Model):
     """
 
     artista = models.ForeignKey(
-        "artistas.Artista",
+        "artistas.Artistas",
         on_delete=models.CASCADE,
         related_name="actuaciones",
         verbose_name="Artista",
