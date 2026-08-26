@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Generos, Artistas, Origen
+from .models import Generos, Artistas, Origen
 
 @admin.register(Origen)
 class OrigenAdmin(admin.ModelAdmin):
