@@ -19,12 +19,18 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'actuaciones:programacion' %}">Programación</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'actuaciones:lista_escenarios' %}">Escenarios</a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'artistas_lista' %}">Lista de artistas</a>
+          <a class="nav-link" href="{% url 'artistas:artistas_lista' %}">Artistas</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'programacion' %}">Actuaciones</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'artistas:genero_lista' %}">Géneros</a>
         </li>
         {% endif %}
       </ul>
